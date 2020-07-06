@@ -1,0 +1,5 @@
+.card__reaction {
+  width: 20px;
+  height: 18px;
+  background: center / cover url(../../../images/icon-heart.svg) no-repeat;
+}

@@ -1,0 +1,18 @@
+.profile__btn_action_add {
+  background-image: url(../../../../images/profile-btn-add.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 2px solid #fff;
+  border-radius: 2px;
+
+  width: 150px;
+  height: 50px;
+  align-self: center; 
+}
+
+@media screen and (max-width: 770px) {
+  .profile__btn_action_add {
+    width: 100%;
+    margin-top: 36px;
+  }
+}
