@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mesto</title>
+    <link rel="stylesheet" href="./pages/index.css">
+</head>
+<body>
+    <div class="page">
+
+        <header class="header">
+            <img class="header__logo" 
+            src="./images/logo.svg" 
+            alt="Логотип Mesto-Russia" 
+            title="Логотип Mesto-Russia">
+        </header>
+
+        <main class="content">
+
+            <section class="profile">
+
+                <img class="profile__avatar" 
+                src="./images/profile-photo.jpg" 
+                alt="Аватар профиля" 
+                title="Аватар профиля">
+
+                <div class="profile__description">
+                    <h1 class="profile__name">Кирилл Кучерявый</h1>
+                    <button class="profile__btn profile__btn_action_edit shaded" title="Редактировать профиль"></button>
+                    <p class="profile__work">Студент Yandex.Praktikum</p> 
+                </div>
+
+                <button class="profile__btn profile__btn_action_add shaded" title="Добавить фотографию"></button>
+            </section>
+
+            <section class="gallery">
+                <figure class="card">
+                  <div class="card__image-wrapper">
+                    <img src="./images/brooklyn_bridge.jpg" alt="Фотография Бруклинского моста" class="card__image">
+                  </div>
+                  <figcaption class="card__description">
+                    <h2 class="card__heading">Бруклинский мост</h2>
+                    <div class="card__reaction"></div>
+                  </figcaption>
+                </figure>
+                <figure class="card">
+                  <div class="card__image-wrapper">
+                    <img src="./images/flatiron_building.jpg" alt="Здание-утюг" class="card__image">
+                  </div>
+                  <figcaption class="card__description">
+                    <h2 class="card__heading">"Утюг"</h2>
+                    <div class="card__reaction"></div>
+                  </figcaption>
+                </figure>
+                <figure class="card">
+                  <div class="card__image-wrapper">
+                    <img src="./images/fulton_center.jpg" alt="Фултон центр" class="card__image">
+                  </div>
+                  <figcaption class="card__description">
+                    <h2 class="card__heading">Фултон центр</h2>
+                    <div class="card__reaction"></div>
+                  </figcaption>
+                </figure>
+                <figure class="card">
+                  <div class="card__image-wrapper">
+                    <img src="./images/new-york_metro.jpg" alt="Метро Нью-Йорка" class="card__image">
+                  </div>
+                  <figcaption class="card__description">
+                    <h2 class="card__heading">Метрополитен</h2>
+                    <div class="card__reaction"></div>
+                  </figcaption>
+                </figure>
+                <figure class="card">
+                  <div class="card__image-wrapper">
+                    <img src="./images/radio-city_music-hall.jpg" alt="Радио-сити" class="card__image">
+                  </div>
+                  <figcaption class="card__description">
+                    <h2 class="card__heading">Радио-сити</h2>
+                    <div class="card__reaction"></div>
+                  </figcaption>
+                </figure>
+                <figure class="card">
+                  <div class="card__image-wrapper">
+                    <img src="./images/sunset_downtown.jpg" alt="Фоторафия заката" class="card__image">
+                  </div>
+                  <figcaption class="card__description">
+                    <h2 class="card__heading">Даунтаун</h2>
+                    <div class="card__reaction"></div>
+                  </figcaption>
+                </figure>
+              </section>
+        </main>
+
+        <footer class="footer">
+            <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
+        </footer>
+
+        <div class="popup popup_content_profile">
+          <div class="popup__container">
+            <button type="button" class="popup__btn popup__btn_action_close shaded"
+              title="Закрыть форму без сохранения данных">
+            </button>
+            <form class="popup__form" name="editProfileForm">
+              <h3 class="popup__heading">Редактировать профиль</h3>
+              <input type="text" id="name" name="name" 
+                class="popup__item popup__item_type_name" placeholder="Имя" required>
+              <input type="text" id="info" name="info" 
+                class="popup__item popup__item_type_info" placeholder="Занятие" required>
+              <button type="submit" value="Сохранить" 
+                class="popup__btn popup__btn_action_submit">
+                  Сохранить  
+              </button>
+            </form>
+          </div>
+        </div>
+        
+    </div>
+    <script src="./script.js"></script>
+</body>
+</html>
