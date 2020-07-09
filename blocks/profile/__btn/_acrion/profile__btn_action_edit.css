@@ -8,6 +8,16 @@
   width: 24px;
   height: 24px;
   align-self: center;
+
+  opacity: 1;
+  -webkit-transition: opacity .2s ease-in-out;
+  -moz-transition: opacity .2s ease-in-out;
+  -o-transition: opacity .2s ease-in-out;
+  transition: opacity .2s ease-in-out;
+}
+
+.profile__btn_action_edit:hover {
+  opacity: .6;
 }
 
 @media screen and (max-width: 730px) {

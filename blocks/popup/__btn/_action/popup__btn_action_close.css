@@ -9,5 +9,14 @@
   position: absolute;
   top: -40px;
   right: -40px;
+
+  opacity: 1;
+  -webkit-transition: opacity .2s ease-in-out;
+  -moz-transition: opacity .2s ease-in-out;
+  -o-transition: opacity .2s ease-in-out;
+  transition: opacity .2s ease-in-out;
 }
 
+.popup__btn_action_close:hover {
+  opacity: .6;
+}

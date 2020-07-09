@@ -1,9 +1,3 @@
-@import url(./__image-wrapper/card__image-wrapper.css);
-@import url(./__image/card__image.css);
-@import url(./__description/card__description.css);
-@import url(./__heading/card__heading.css);
-@import url(./__reaction/card__reaction.css);
-
 .card {
     margin: 0;
     max-width: 282px;

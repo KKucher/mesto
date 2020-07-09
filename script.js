@@ -8,8 +8,8 @@ const workInput = editProfileForm.querySelector('.popup__item_type_info');
 const closeProfileButton = editProfilePopup.querySelector('.popup__btn_action_close');
 
 
-const togglePopup = function(popup) {
-  popup.classList.toggle('popup_opened');
+function togglePopup () {
+  editProfilePopup.classList.toggle('popup_opened');
 }
 
 const editProfile = function() {

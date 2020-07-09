@@ -1,6 +1,3 @@
-@import url(./_acrion/profile__btn_action_add.css);
-@import url(./_acrion/profile__btn_action_edit.css);
-
 .profile__btn {
     box-shadow: none;
     outline: none;
