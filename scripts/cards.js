@@ -44,6 +44,11 @@ const linkInput = newPlaceForm.querySelector('.popup__item_type_info');
 
 const newPlaceCloseButton = newPlacePopup.querySelector('.popup__btn_action_close');
 
+// Card creation template
+const cardTemplate = document.querySelector('#card-template').content;
+
+//************************************
+
 // Add card with img to the list
 const addListItem = function (item) {
   const cardElement = createCard(item);
@@ -52,7 +57,6 @@ const addListItem = function (item) {
 
 // Card create
 const createCard = function (newCard) {
-  const cardTemplate = document.querySelector('#card-template').content;
   const cardElement = cardTemplate.cloneNode(true);
   cardElement.querySelector('.photo-grid__title').textContent = newCard.name;
 
@@ -107,7 +111,7 @@ const saveNewCard = function (evt) {
   togglePopup(newPlacePopup);
 }
 
-//******************
+//************************************
 
 createCardList();
 
