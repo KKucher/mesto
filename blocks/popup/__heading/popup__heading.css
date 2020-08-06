@@ -1,20 +1,22 @@
 .popup__heading {
-  font-size: 24px;
-  font-weight: 900;
-  line-height: 29px;
-
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-    
-  padding: 0;
+  color: #000;
   margin: 0;
-  margin-bottom: 54px;
+  padding: 0;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 1.2;
+  margin-bottom: 36px;
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 424px) {
   .popup__heading {
-    font-size: 20px;
-    line-height: 25px;  
+    margin-bottom: 24px;
+  }
+}
+
+@media screen and (max-height: 424px) {
+  .popup__heading {
+    font-size: 16px;
+    margin-bottom: 14px;
   }
 }
