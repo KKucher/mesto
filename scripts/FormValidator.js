@@ -46,23 +46,45 @@ export class FormValidator {
     })
   }
 
-  _checkInputValidity(formElement, inputElement) {
+  // _checkInputValidity(formElement, inputElement) {
+  //   if (!inputElement.validity.valid) {
+  //     this._showInputError(formElement, inputElement, inputElement.validationMessage);
+  //   } else {
+  //     this._hideInputError(formElement, inputElement);
+  //   }
+  // }
+
+  // _hideInputError(formElement, inputElement) {
+  //   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
+  //   inputElement.classList.remove(this._inputErrorClass);
+  //   errorElement.classList.remove(this._errorClass);
+  //   errorElement.textContent = '';
+  // }
+
+  // _showInputError(formElement, inputElement, errorMessage) {
+  //   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
+  //   inputElement.classList.add(this._inputErrorClass);
+  //   errorElement.textContent = errorMessage;
+  //   errorElement.classList.add(this._errorClass);
+  // }
+
+  _checkInputValidity(validatingForm, inputElement) {
     if (!inputElement.validity.valid) {
-      this._showInputError(formElement, inputElement, inputElement.validationMessage);
+      this._showInputError(validatingForm, inputElement, inputElement.validationMessage);
     } else {
-      this._hideInputError(formElement, inputElement);
+      this._hideInputError(validatingForm, inputElement);
     }
   }
 
-  _hideInputError(formElement, inputElement) {
-    const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
+  _hideInputError(validatingForm, inputElement) {
+    const errorElement = validatingForm.querySelector(`#${inputElement.id}-error`);
     inputElement.classList.remove(this._inputErrorClass);
     errorElement.classList.remove(this._errorClass);
     errorElement.textContent = '';
   }
 
-  _showInputError(formElement, inputElement, errorMessage) {
-    const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
+  _showInputError(validatingForm, inputElement, errorMessage) {
+    const errorElement = validatingForm.querySelector(`#${inputElement.id}-error`);
     inputElement.classList.add(this._inputErrorClass);
     errorElement.textContent = errorMessage;
     errorElement.classList.add(this._errorClass);
