@@ -18,6 +18,8 @@
   transition: opacity .2s ease-in-out;
 
   background-color: transparent;
+  cursor: pointer;
+  outline: none;
 }
 
 .popup__btn_action_close:hover {

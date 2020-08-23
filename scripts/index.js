@@ -100,8 +100,8 @@ function openPopupEdit() {
 // функция открытия popup (добавление карточки)
 function openPopupAdd() {
   const addSaveButton = addFormElement.querySelector(submitButtonSelector);
-  addSaveButton.classList.remove(inactiveButtonClass);
-  addSaveButton.disabled = false;
+  addSaveButton.classList.add(inactiveButtonClass);
+  addSaveButton.disabled = true;
 
   addFormValidator.clearErrors();
 

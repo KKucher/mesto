@@ -12,6 +12,8 @@ export class Card {
     this._link = data.link;
     this._cardSelector = cardSelector;
     this._openPopupImg = this._openPopupImg.bind(this);
+    this._deletePopupImg = this._deletePopupImg.bind(this);
+    this._likePopupImg = this._likePopupImg.bind(this);
   }
 
   _getTemplate() {
@@ -31,7 +33,7 @@ export class Card {
     return this._element;
   }
 
-  // функция открытия popup картинки в большом размере
+  // FULL SIZE IMG FUNCTION
   _openPopupImg() {
     const imgPopup = document.querySelector('.popup_content_image');
     const imgPopupFull = imgPopup.querySelector('.popup__image')
@@ -42,19 +44,40 @@ export class Card {
     openPopup(imgPopup);
   }
 
-  _setEventListeners() {
+  // DELETE IMG FUNCTION
+  _deletePopupImg(evt) {
+    evt.target.closest('.photo-grid__card').remove();
+  }
+
+  // LIKE IMG FUNCTION
+  _likePopupImg(evt) {
+    evt.target.classList.toggle('photo-grid__btn_clicked');
+  }
+
+  // _setEventListeners() {
+  //   // FULL SIZE IMG
+  //   this._element.querySelector('.photo-grid__image').addEventListener('click', this._openPopupImg);
+
+  //   // DELETE IMG
+  //   this._element.querySelector('.photo-grid__btn_action_del').addEventListener('click', function (evt) {
+  //     evt.target.closest('.photo-grid__card').remove();
+  //   });
+
+  //   // LIKE IMG
+  //   this._element.querySelector('.photo-grid__btn_action_like').addEventListener('click', function (evt) {
+  //     evt.target.classList.toggle('photo-grid__btn_clicked');
+  //   });
+  // }
+
+   _setEventListeners() {
     // FULL SIZE IMG
     this._element.querySelector('.photo-grid__image').addEventListener('click', this._openPopupImg);
 
-    // DELITE IMG
-    this._element.querySelector('.photo-grid__btn_action_del').addEventListener('click', function (evt) {
-      evt.target.closest('.photo-grid__card').remove();
-    });
+    // DELETE IMG
+    this._element.querySelector('.photo-grid__btn_action_del').addEventListener('click', this._deletePopupImg);
 
     // LIKE IMG
-    this._element.querySelector('.photo-grid__btn_action_like').addEventListener('click', function (evt) {
-      evt.target.classList.toggle('photo-grid__btn_clicked');
-    });
-  }
+    this._element.querySelector('.photo-grid__btn_action_like').addEventListener('click', this._likePopupImg);
+  } 
 
 }
