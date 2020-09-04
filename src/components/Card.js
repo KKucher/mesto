@@ -1,17 +1,11 @@
 //***************************************************************************
 
-import {
-  openPopup
-} from './utils.js';
-
-//***************************************************************************
-
 export class Card {
-  constructor(data, cardSelector) {
+  constructor(data, cardSelector, handleCardClick) {
     this._name = data.name;
     this._link = data.link;
     this._cardSelector = cardSelector;
-    this._openPopupImg = this._openPopupImg.bind(this);
+    this._handleCardClick = handleCardClick;
     this._deletePopupImg = this._deletePopupImg.bind(this);
     this._likePopupImg = this._likePopupImg.bind(this);
   }
@@ -34,15 +28,15 @@ export class Card {
   }
 
   // FULL SIZE IMG FUNCTION
-  _openPopupImg() {
-    const imgPopup = document.querySelector('.popup_content_image');
-    const imgPopupFull = imgPopup.querySelector('.popup__image')
-    imgPopupFull.src = this._link;
-    imgPopupFull.alt = `Фото: ${this._name}`;
-    imgPopup.querySelector('.popup__image-caption').textContent = this._name;
+  // _openPopupImg() {
+  //   const imgPopup = document.querySelector('.popup_content_image');
+  //   const imgPopupFull = imgPopup.querySelector('.popup__image')
+  //   imgPopupFull.src = this._link;
+  //   imgPopupFull.alt = `Фото: ${this._name}`;
+  //   imgPopup.querySelector('.popup__image-caption').textContent = this._name;
 
-    openPopup(imgPopup);
-  }
+  //   openPopup(imgPopup);
+  // }
 
   // DELETE IMG FUNCTION
   _deletePopupImg(evt) {
@@ -54,30 +48,15 @@ export class Card {
     evt.target.classList.toggle('photo-grid__btn_clicked');
   }
 
-  // _setEventListeners() {
-  //   // FULL SIZE IMG
-  //   this._element.querySelector('.photo-grid__image').addEventListener('click', this._openPopupImg);
-
-  //   // DELETE IMG
-  //   this._element.querySelector('.photo-grid__btn_action_del').addEventListener('click', function (evt) {
-  //     evt.target.closest('.photo-grid__card').remove();
-  //   });
-
-  //   // LIKE IMG
-  //   this._element.querySelector('.photo-grid__btn_action_like').addEventListener('click', function (evt) {
-  //     evt.target.classList.toggle('photo-grid__btn_clicked');
-  //   });
-  // }
-
-   _setEventListeners() {
+  _setEventListeners() {
     // FULL SIZE IMG
-    this._element.querySelector('.photo-grid__image').addEventListener('click', this._openPopupImg);
+    this._element.querySelector('.photo-grid__image').addEventListener('click', this._handleCardClick);
 
     // DELETE IMG
     this._element.querySelector('.photo-grid__btn_action_del').addEventListener('click', this._deletePopupImg);
 
     // LIKE IMG
     this._element.querySelector('.photo-grid__btn_action_like').addEventListener('click', this._likePopupImg);
-  } 
+  }
 
 }

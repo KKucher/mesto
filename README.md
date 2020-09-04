@@ -5,14 +5,22 @@
 * Используемые технологии
 * Ссылка на проект
 
-**Описание**
+**Описание:**
 
 Проект интерактивного сайта в виде фото-блога.
 
-**Используемые технологии**
+**Используемые технологии:**
 
-HTML, CSS, JavaScript, flexbox, grid layout, media queries, BEM, Nested file structure, etc.
+- HTML 
+- CSS 
+- JavaScript
+- Flexbox
+- Grid layout 
+- Media queries 
+- BEM
+- Nested file structure
+- Webpack
 
-**Ссылка на проект**
+**Ссылка на проект:**
 
 * [Ссылка на проектную работу "Место"](https://kkucher.github.io/mesto/)
