@@ -144,6 +144,8 @@ const editPopupElement = new PopupWithForm({
   popupSelector: '.popup_content_profile',
   handleFormSubmit: (item) => {
     userData.setUserInfo(item.name, item.description);
+
+    editPopupElement.close();
   }
 });
 

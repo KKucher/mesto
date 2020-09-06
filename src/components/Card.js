@@ -27,17 +27,6 @@ export class Card {
     return this._element;
   }
 
-  // FULL SIZE IMG FUNCTION
-  // _openPopupImg() {
-  //   const imgPopup = document.querySelector('.popup_content_image');
-  //   const imgPopupFull = imgPopup.querySelector('.popup__image')
-  //   imgPopupFull.src = this._link;
-  //   imgPopupFull.alt = `Фото: ${this._name}`;
-  //   imgPopup.querySelector('.popup__image-caption').textContent = this._name;
-
-  //   openPopup(imgPopup);
-  // }
-
   // DELETE IMG FUNCTION
   _deletePopupImg(evt) {
     evt.target.closest('.photo-grid__card').remove();

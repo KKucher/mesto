@@ -14,32 +14,6 @@ export const initialCards = [
   { name: 'Даунтаун', link: sunsetDowntown }
 ];
 
-// export const initialCards = [{
-//     name: 'Бруклинский мост',
-//     link: '../images/brooklyn_bridge.jpg'
-//   },
-//   {
-//     name: '"Утюг"',
-//     link: '../images/flatiron_building.jpg'
-//   },
-//   {
-//     name: 'Фултон центр',
-//     link: '../images/fulton_center.jpg'
-//   },
-//   {
-//     name: 'Метрополитен',
-//     link: '../images/new-york_metro.jpg'
-//   },
-//   {
-//     name: 'Радио-сити',
-//     link: '../images/radio-city_music-hall.jpg'
-//   },
-//   {
-//     name: 'Даунтаун',
-//     link: '../images/sunset_downtown.jpg'
-//   }
-// ];
-
 export const validationObject = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
