@@ -1,12 +1,12 @@
 {
   "name": "mesto_wp",
   "version": "1.0.0",
-  "description": "### Обзор * Описание * Используемые технологии * Ссылка на проект",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rimraf dist && webpack --mode development",
-    "dev": "webpack-dev-server --watch --open --mode development"
+    "dev": "webpack-dev-server --watch --open --mode development",
+    "deploy": "npm run build && gh-pages -d dist"
   },
   "repository": {
     "type": "git",

@@ -46,23 +46,23 @@ export class FormValidator {
     })
   }
 
-  _checkInputValidity(validatingForm, inputElement) {
+  _checkInputValidity(formElement, inputElement) {
     if (!inputElement.validity.valid) {
-      this._showInputError(validatingForm, inputElement, inputElement.validationMessage);
+      this._showInputError(formElement, inputElement, inputElement.validationMessage);
     } else {
-      this._hideInputError(validatingForm, inputElement);
+      this._hideInputError(formElement, inputElement);
     }
   }
 
-  _hideInputError(validatingForm, inputElement) {
-    const errorElement = validatingForm.querySelector(`#${inputElement.id}-error`);
+  _hideInputError(formElement, inputElement) {
+    const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
     inputElement.classList.remove(this._inputErrorClass);
     errorElement.classList.remove(this._errorClass);
     errorElement.textContent = '';
   }
 
-  _showInputError(validatingForm, inputElement, errorMessage) {
-    const errorElement = validatingForm.querySelector(`#${inputElement.id}-error`);
+  _showInputError(formElement, inputElement, errorMessage) {
+    const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
     inputElement.classList.add(this._inputErrorClass);
     errorElement.textContent = errorMessage;
     errorElement.classList.add(this._errorClass);

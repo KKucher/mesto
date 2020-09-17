@@ -1,13 +1,16 @@
 //***************************************************************************
 
 export class Card {
-  constructor(data, cardSelector, handleCardClick) {
+  constructor(data, cardSelector, currentUserId, handleCardClick, deletePopupImg, likePopupImg) {
     this._name = data.name;
     this._link = data.link;
+    this._likes = data.likes;
+    this._owner = data.owner;
     this._cardSelector = cardSelector;
+    this._currentUserId = currentUserId;
     this._handleCardClick = handleCardClick;
-    this._deletePopupImg = this._deletePopupImg.bind(this);
-    this._likePopupImg = this._likePopupImg.bind(this);
+    this._deletePopupImg = deletePopupImg;
+    this._likePopupImg = likePopupImg;
   }
 
   _getTemplate() {
@@ -23,18 +26,19 @@ export class Card {
     elementImg.src = this._link;
     elementImg.alt = `Фото: ${this._name}`;
     this._element.querySelector('.photo-grid__title').textContent = this._name;
+    this._element.querySelector('.photo-grid__like-amount').textContent = this._likes.length;
+
+    if (this._owner._id !== this._currentUserId) {
+      this._element.querySelector('.photo-grid__btn_action_del').remove();
+    };
+
+    this._likes.forEach((item) => {
+      if (item._id == this._currentUserId) {
+        this._element.querySelector('.photo-grid__btn_action_like').classList.add('photo-grid__btn_clicked');
+      }
+    });
 
     return this._element;
-  }
-
-  // DELETE IMG FUNCTION
-  _deletePopupImg(evt) {
-    evt.target.closest('.photo-grid__card').remove();
-  }
-
-  // LIKE IMG FUNCTION
-  _likePopupImg(evt) {
-    evt.target.classList.toggle('photo-grid__btn_clicked');
   }
 
   _setEventListeners() {
