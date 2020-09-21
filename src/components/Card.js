@@ -60,13 +60,7 @@ export class Card {
     if (this._owner._id !== this._currentUserId) {
       this._element.querySelector('.photo-grid__btn_action_del').remove();
     }
-
-    // this._likes.forEach((item) => {
-    //   if (item._id !== this._currentUserId) {
-    //     this._element.querySelector('.photo-grid__btn_action_like').classList.add('photo-grid__btn_clicked');
-    //   }
-    // });
-
+    
     return this._element;
   }
 

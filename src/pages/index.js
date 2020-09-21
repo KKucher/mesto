@@ -74,11 +74,6 @@ const avatarForm = avatarPopup.querySelector('.popup-avatar__form');
 const nameInput = editForm.querySelector(".popup__input_type_name");
 const jobInput = editForm.querySelector(".popup__input_type_info");
 
-// кнопки сохранить (редактирование профиля, добавление карточки, изменение аватара)
-// const addSaveButton = addForm.querySelector(submitButtonSelector);
-// const editSaveButton = editForm.querySelector(submitButtonSelector);
-// const avatarSaveButton = avatarForm.querySelector(submitButtonSelector);
-
 const addSave = addPopup.querySelector(submitButtonSelector);
 const editSave = editPopup.querySelector(submitButtonSelector);
 const avatarSave = avatarPopup.querySelector(submitButtonSelector);
@@ -195,7 +190,7 @@ avatarPopupElement.setEventListeners();
 // функция открытия popup (редактирование аватара)
 function openPopupAvatar() {
   avatarFormValidator.clearErrors();
-  editFormValidator.inactivateButton();
+  avatarFormValidator.inactivateButton();
 
   avatarPopupElement.open();
 }
@@ -221,49 +216,6 @@ confirmPopupElement.setEventListeners();
 
 //***************************************************************************
 // создание класса Card
-// function createCard(item, templateId) {
-//   const card = new Card(
-//     item,
-//     templateId,
-//     currentUser._id,
-//     () => {
-//       imgPopup.open(item.name, item.link);
-//     },
-//     () => {
-//       card._id = item._id;
-//       confirmPopupElement.open(card);
-//     },
-//     (evt) => {
-//       evt.target.classList.toggle('photo-grid__btn_clicked');
-//       const elementLikeAmount = evt.target.closest('.photo-grid__btn_action_likes').querySelector('.photo-grid__like-amount');
-
-//       if (evt.target.classList.contains('photo-grid__btn_clicked')) {
-//         api.addLike(item._id)
-//           .then(() => {
-//             item.likes.push(currentUser);
-//             elementLikeAmount.textContent = item.likes.length;
-//           })
-//           .catch(err => console.log(`Error ${err}`))
-//       } else {
-//         api.deleteLike(item._id)
-//           .then(() => {
-//             item.likes.forEach((user) => {
-//               if (user._id == currentUser._id) {
-//                 const userIndex = item.likes.indexOf(user);
-//                 if (userIndex !== -1) {
-//                   item.likes.splice(userIndex, 1);
-//                   elementLikeAmount.textContent = item.likes.length;
-//                 }
-//               }
-//             });
-//           })
-//           .catch(err => console.log(`Error ${err}`));
-//       }
-//     }
-//   );
-//   return card;
-// }
-
 function createCard(item, templateId) {
   const card = new Card(
     item,
@@ -342,7 +294,7 @@ addPopupElement.setEventListeners();
 // функция открытия popup (добавление карточки)
 function openPopupAdd() {
   addFormValidator.clearErrors();
-  editFormValidator.inactivateButton();
+  addFormValidator.inactivateButton();
 
   addPopupElement.open();
 }
