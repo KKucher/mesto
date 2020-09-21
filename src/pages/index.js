@@ -43,12 +43,8 @@ import {
 //***************************************************************************
 // Объявляем константы:
 const {
-  formSelector,
-  inputSelector,
   submitButtonSelector,
   inactiveButtonClass,
-  inputErrorClass,
-  errorClass
 } = validationObject;
 
 const main = document.querySelector(".content");
@@ -79,9 +75,14 @@ const nameInput = editForm.querySelector(".popup__input_type_name");
 const jobInput = editForm.querySelector(".popup__input_type_info");
 
 // кнопки сохранить (редактирование профиля, добавление карточки, изменение аватара)
-const addSaveButton = addForm.querySelector(submitButtonSelector);
-const editSaveButton = editForm.querySelector(submitButtonSelector);
-const avatarSaveButton = avatarForm.querySelector(submitButtonSelector);
+// const addSaveButton = addForm.querySelector(submitButtonSelector);
+// const editSaveButton = editForm.querySelector(submitButtonSelector);
+// const avatarSaveButton = avatarForm.querySelector(submitButtonSelector);
+
+const addSave = addPopup.querySelector(submitButtonSelector);
+const editSave = editPopup.querySelector(submitButtonSelector);
+const avatarSave = avatarPopup.querySelector(submitButtonSelector);
+const deleteButton = confirmPopup.querySelector(submitButtonSelector);
 
 // валидация (редактирования профиля, добавления карточки, добавления аватара)
 const editFormValidator = new FormValidator(validationObject, editForm);
@@ -93,6 +94,7 @@ addFormValidator.enableValidation();
 const avatarFormValidator = new FormValidator(validationObject, avatarForm);
 avatarFormValidator.enableValidation();
 
+//***************************************************************************
 // popup картинки в большом размере
 const imgPopup = new PopupWithImage('.popup_content_image');
 imgPopup.setEventListeners();
@@ -145,7 +147,6 @@ const userData = new UserInfo({
 const editPopupElement = new PopupWithForm({
   popupSelector: '.popup_content_profile',
   handleFormSubmit: (item) => {
-    const editSave = editPopup.querySelector('.popup__btn');
     editSave.textContent = 'Сохранение...';
     api.editProfile(item)
       .then((result) => {
@@ -163,13 +164,11 @@ editPopupElement.setEventListeners();
 // функция открытия popup (редактирование профиля)
 function openPopupEdit() {
   editFormValidator.clearErrors();
+  editFormValidator.activateButton();
 
   const userInfo = userData.getUserInfo();
   nameInput.value = userInfo.name;
   jobInput.value = userInfo.description;
-
-  editSaveButton.classList.remove(inactiveButtonClass);
-  editSaveButton.disabled = false;
 
   editPopupElement.open();
 }
@@ -179,7 +178,6 @@ function openPopupEdit() {
 const avatarPopupElement = new PopupWithForm({
   popupSelector: '.popup-avatar',
   handleFormSubmit: (item) => {
-    const avatarSave = avatarPopup.querySelector('.popup__btn');
     avatarSave.textContent = 'Сохранение...';
     api.editAvatar(item)
       .then((result) => {
@@ -197,9 +195,7 @@ avatarPopupElement.setEventListeners();
 // функция открытия popup (редактирование аватара)
 function openPopupAvatar() {
   avatarFormValidator.clearErrors();
-
-  avatarSaveButton.classList.add(inactiveButtonClass);
-  avatarSaveButton.disabled = true;
+  editFormValidator.inactivateButton();
 
   avatarPopupElement.open();
 }
@@ -209,7 +205,6 @@ function openPopupAvatar() {
 const confirmPopupElement = new PopupConfirm({
   popupSelector: '.popup-confirm',
   handleSubmit: (item) => {
-    const deleteButton = confirmPopup.querySelector('.popup__btn');
     deleteButton.textContent = 'Удаление...';
     api.deleteCard(item._id)
       .then(() => {
@@ -226,6 +221,49 @@ confirmPopupElement.setEventListeners();
 
 //***************************************************************************
 // создание класса Card
+// function createCard(item, templateId) {
+//   const card = new Card(
+//     item,
+//     templateId,
+//     currentUser._id,
+//     () => {
+//       imgPopup.open(item.name, item.link);
+//     },
+//     () => {
+//       card._id = item._id;
+//       confirmPopupElement.open(card);
+//     },
+//     (evt) => {
+//       evt.target.classList.toggle('photo-grid__btn_clicked');
+//       const elementLikeAmount = evt.target.closest('.photo-grid__btn_action_likes').querySelector('.photo-grid__like-amount');
+
+//       if (evt.target.classList.contains('photo-grid__btn_clicked')) {
+//         api.addLike(item._id)
+//           .then(() => {
+//             item.likes.push(currentUser);
+//             elementLikeAmount.textContent = item.likes.length;
+//           })
+//           .catch(err => console.log(`Error ${err}`))
+//       } else {
+//         api.deleteLike(item._id)
+//           .then(() => {
+//             item.likes.forEach((user) => {
+//               if (user._id == currentUser._id) {
+//                 const userIndex = item.likes.indexOf(user);
+//                 if (userIndex !== -1) {
+//                   item.likes.splice(userIndex, 1);
+//                   elementLikeAmount.textContent = item.likes.length;
+//                 }
+//               }
+//             });
+//           })
+//           .catch(err => console.log(`Error ${err}`));
+//       }
+//     }
+//   );
+//   return card;
+// }
+
 function createCard(item, templateId) {
   const card = new Card(
     item,
@@ -238,32 +276,19 @@ function createCard(item, templateId) {
       card._id = item._id;
       confirmPopupElement.open(card);
     },
-    (evt) => {
-      evt.target.classList.toggle('photo-grid__btn_clicked');
-      const elementLikeAmount = evt.target.closest('.photo-grid__btn_action_likes').querySelector('.photo-grid__like-amount');
-
-      if (evt.target.classList.contains('photo-grid__btn_clicked')) {
-        api.addLike(item._id)
-          .then(() => {
-            item.likes.push(currentUser);
-            elementLikeAmount.textContent = item.likes.length;
-          })
-          .catch(err => console.log(`Error ${err}`))
-      } else {
-        api.deleteLike(item._id)
-          .then(() => {
-            item.likes.forEach((user) => {
-              if (user._id == currentUser._id) {
-                const userIndex = item.likes.indexOf(user);
-                if (userIndex !== -1) {
-                  item.likes.splice(userIndex, 1);
-                  elementLikeAmount.textContent = item.likes.length;
-                }
-              }
-            });
-          })
-          .catch(err => console.log(`Error ${err}`));
-      }
+    () => {
+      api.addLike(item._id)
+        .then((result) => {
+          card.updateLikes(result.likes)
+        })
+        .catch(err => console.log(`Error ${err}`))
+    },
+    () => {
+      api.deleteLike(item._id)
+        .then((result) => {
+          card.updateLikes(result.likes)
+        })
+        .catch(err => console.log(`Error ${err}`))
     }
   );
   return card;
@@ -298,7 +323,6 @@ const addCardsList = new Section({
 const addPopupElement = new PopupWithForm({
   popupSelector: '.popup_content_card',
   handleFormSubmit: (item) => {
-    const addSave = addPopup.querySelector('.popup__btn');
     addSave.textContent = 'Сохранение...';
     api.addNewCard(item)
       .then((result) => {
@@ -318,9 +342,7 @@ addPopupElement.setEventListeners();
 // функция открытия popup (добавление карточки)
 function openPopupAdd() {
   addFormValidator.clearErrors();
-
-  addSaveButton.classList.add(inactiveButtonClass);
-  addSaveButton.disabled = true;
+  editFormValidator.inactivateButton();
 
   addPopupElement.open();
 }

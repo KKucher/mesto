@@ -8,6 +8,9 @@ export class FormValidator {
     this._errorClass = data.errorClass;
 
     this._validatingForm = validatingForm;
+
+    this._inputList = Array.from(this._validatingForm.querySelectorAll(this._inputSelector));
+    this._buttonElement = validatingForm.querySelector(this._submitButtonSelector);
   }
 
   enableValidation() {
@@ -18,26 +21,32 @@ export class FormValidator {
   }
 
   _setEventListeners() {
-    const inputList = Array.from(this._validatingForm.querySelectorAll(this._inputSelector));
-    const buttonElement = this._validatingForm.querySelector(this._submitButtonSelector);
-
-    this._toggleButtonState(inputList, buttonElement);
-    inputList.forEach((inputElement) => {
+    this._toggleButtonState(this._inputList, this._buttonElement);
+    this._inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', () => {
         this._checkInputValidity(this._validatingForm, inputElement);
-        this._toggleButtonState(inputList, buttonElement);
+        this._toggleButtonState(this._inputList, this._buttonElement);
       });
     });
   }
 
-  _toggleButtonState(inputList, buttonElement) {
-    if (this._hasInvalidInput(inputList)) {
-      buttonElement.classList.add(this._inactiveButtonClass);
-      buttonElement.disabled = true;
-    } else {
-      buttonElement.classList.remove(this._inactiveButtonClass);
-      buttonElement.disabled = false;
+  _toggleButtonState() {
+    if (this._hasInvalidInput(this._inputList)) {
+      this.inactivateButton(this._buttonElement);
     }
+    else {
+      this.activateButton(this._buttonElement);
+    }
+  }
+
+  inactivateButton() {
+    this._buttonElement.classList.add(this._inactiveButtonClass);
+    this._buttonElement.disabled = true;
+  }
+
+  activateButton() {
+    this._buttonElement.classList.remove(this._inactiveButtonClass);
+      this._buttonElement.disabled = false;
   }
 
   _hasInvalidInput(inputList) {
@@ -69,9 +78,7 @@ export class FormValidator {
   }
 
   clearErrors() {
-    const inputList = Array.from(this._validatingForm.querySelectorAll(this._inputSelector));
-
-    inputList.forEach((inputElement) => {
+    this._inputList.forEach((inputElement) => {
       if (inputElement.classList.contains(this._inputErrorClass)) {
         this._hideInputError(this._validatingForm, inputElement);
       }
