@@ -22,15 +22,15 @@ export class Card {
 
   _isLiked() {
     return this._likes.some((item) => {
-      return item._id !== this._currentUserId
+      return item._id === this._currentUserId
     })
   }
 
   _renderLikesBtn() {
     if (this._isLiked()) {
-      this._element.querySelector('.photo-grid__btn_action_like').classList.add('.photo-grid__btn_clicked');
+      this._element.querySelector('.photo-grid__btn_action_like').classList.add('photo-grid__btn_clicked');
     } else {
-      this._element.querySelector('.photo-grid__btn_action_like').classList.remove('.photo-grid__btn_clicked');
+      this._element.querySelector('.photo-grid__btn_action_like').classList.remove('photo-grid__btn_clicked');
     };
   }
 
